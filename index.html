@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<style>
+.time{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.timeunit{
+    margin-right: 4px;
+}
+body{
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    margin-top: 120px;
+}
+</style>
+<body>
+    <h1>New Year 2023</h1>
+    <p>New year is in</p>
+    <div class="time">
+        <h2 id="RemainingTime">m</h2>
+    </div>
+        <p>The Time now is :</p>
+        <div class="time">
+            <h2 class="timeunit" id="CURRENTHOUR">21</h2>
+            <h2 class="timeunit">:</h2>
+            <h2 class="timeunit" id="CURRENTMINUTE">14</h2>
+            <h2 class="timeunit">:</h2>
+            <h2 class="timeunit" id="CURRENTSECOND">14</h2>
+        </div>
+</body>
+
+<script>
+    var TimerEnd = new Date("dec 31, 2022 23:59:59").getTime();
+    function calculateTimer()
+    {
+        var now = new Date().getTime();
+        var t = TimerEnd - now;
+        var Days = Math.floor(t/(1000*60*60*24));
+        var Hours = Math.floor((t%(1000*60*60*24))/(1000*60*60));
+        var Minutes = Math.floor((t%(1000*60*60))/(1000*60));
+        var Seconds = Math.floor((t%(1000*60))/(1000));
+        document.getElementById("RemainingTime").innerHTML = Days + " Days " + Hours + " Hours " + Minutes + " Minutes " + Seconds + " Seconds ";
+        
+
+    }
+
+    
+    
+    function currentTime(){
+    var now=new Date();
+    let CurrentHour=now.getHours();
+    let CurrentMinute=now.getMinutes();
+    let CurrentSecond=now.getSeconds();
+    document.getElementById("CURRENTHOUR").innerHTML=CurrentHour;
+    document.getElementById("CURRENTMINUTE").innerHTML=CurrentMinute;
+    document.getElementById("CURRENTSECOND").innerHTML=CurrentSecond;
+    let t = setTimeout(function(){
+        currentTime();
+        calculateTimer();
+    },1000);
+}
+    
+    currentTime();
+    calculateTimer();
+</script>
+
+</html>
